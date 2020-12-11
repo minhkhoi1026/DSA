@@ -2,3 +2,9 @@
 *
 !*.*
 !*/
+
+#VSCode
+.vscode/
+
+#Text file
+*.txt
