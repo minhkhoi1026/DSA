@@ -26,7 +26,7 @@ void generateTest(const string filename, int m, int n, int k)
     {
         i = rand() % m;
         j = rand() % n;
-        fs << "(" << i << ", " << j << "): ";
+        fs << "(" << i + 1 << ", " << j + 1 << "): ";
 
         s = "";
         state = rand() % 2;
@@ -38,8 +38,8 @@ void generateTest(const string filename, int m, int n, int k)
             else       s += a[i][j++];
         }
 
-        if (rand() % 2)
-            s[0] = s[1];
+        //if (rand() % 2)
+        //    s[0] = s[1];
 
         fs << s << endl;
     }
