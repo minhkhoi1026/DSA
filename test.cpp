@@ -2,13 +2,14 @@
 
 using namespace std;
 
-void generateTest(const string filename, int m, int n, int k)
+void generateTest(const string filename, int m, int n, int k, bool log = 0 , int wrongRatio = 2)
 {
     char a[m][n];
 
     fstream fs(filename, fstream::out);
     fs << m << " " << n << endl;
 
+    // Radom table
     for (int i = 0; i < m; ++i)
     {
         for (int j = 0; j < n; ++j)
@@ -22,25 +23,42 @@ void generateTest(const string filename, int m, int n, int k)
     int i, j, l;
     bool state;
     string s;
-    for (int t = 0; t < k; ++t)
+    while(k--)
     {
+        state = rand() % 2;
         i = rand() % m;
         j = rand() % n;
-        fs << "(" << i + 1 << ", " << j + 1 << "): ";
+
+        if(rand() % 2)  //Random position
+        {
+            if (state) l = rand() % (m - i) + 1;
+            else       l = rand() % (n - j) + 1;
+        }
+        else //Random length
+        {
+            if (state) l = rand() % m + 1;
+            else       l = rand() % n + 1;
+
+            if (state) i = rand() % (m - l + 1);
+            else       j = rand() % (n - l + 1);
+        }
+        if (log) cout << "(" << i + 1 << ", " << j + 1 << "): ";
 
         s = "";
-        state = rand() % 2;
-        if (state) l = rand() % (m - i) + 1;
-        else       l = rand() % (n - j) + 1;
         while (l--)
         {
             if (state) s += a[i++][j];
             else       s += a[i][j++];
         }
+        if (log) cout << s << " -> ";
+        
+        // Random wrong answer
+        while (rand() % wrongRatio)
+        {
+            s[rand() % s.length()] = rand() % 26 + 'A';
+        }
 
-        //if (rand() % 2)
-        //    s[0] = s[1];
-
+        if (log) cout << s << endl;
         fs << s << endl;
     }
 
