@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void generateTest(const string filename, int m, int n, int k, int minLength = 1, bool log = 0, int wrongRatio = 2)
+void generateTest(const string filename, int m, int n, int k, bool log = 0 , int wrongRatio = 2)
 {
     char a[m][n];
 
@@ -22,27 +22,31 @@ void generateTest(const string filename, int m, int n, int k, int minLength = 1,
     int i, j, l;
     bool state;
     string s;
-    for (int t = 0; t < k; ++t)
+    while(k--)
     {
+        state = rand() % 2;
+        if (state) l = rand() % m + 1;
+        else       l = rand() % n + 1;
+
         i = rand() % m;
         j = rand() % n;
-        if (log) fs << "(" << i + 1 << ", " << j + 1 << "): ";
+        if (state) i = rand() % (m - l + 1);
+        else       j = rand() % (n - l + 1);
+        if (log) cout << "(" << i + 1 << ", " << j + 1 << "): ";
 
         s = "";
-        state = rand() % 2;
-        if (state) l = rand() % (m - i) + 1;
-        else       l = rand() % (n - j) + 1;
         while (l--)
         {
             if (state) s += a[i++][j];
             else       s += a[i][j++];
         }
-
-        while (!(rand() % wrongRatio))
+        if (log) cout << s << " -> ";
+        
+        while (rand() % wrongRatio)
         {
             s[rand() % s.length()] = rand() % 26 + 'A';
         }
-
+        if (log) cout << s << endl;
         fs << s << endl;
     }
 
@@ -57,5 +61,5 @@ int main()
 
     int m, n, k;
     cin >> m >> n >> k; 
-    generateTest("1.txt", m, n, k);
+    generateTest("1.txt", m, n, k, 1);
 }
