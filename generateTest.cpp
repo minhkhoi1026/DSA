@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void generateTest(const string filename, int m, int n, int k, bool log = 0 , int wrongRatio = 2)
+void generateTest(const string filename, int m, int n, int k, bool log = 0 , int minLength = 1, int wrongRatio = 2)
 {
     char a[m][n];
 
@@ -42,6 +42,12 @@ void generateTest(const string filename, int m, int n, int k, bool log = 0 , int
             if (state) i = rand() % (m - l + 1);
             else       j = rand() % (n - l + 1);
         }
+        if (l < minLength)
+        {
+            k++;
+            continue;
+        }
+
         if (log) cout << "(" << i + 1 << ", " << j + 1 << "): ";
 
         s = "";
@@ -50,15 +56,21 @@ void generateTest(const string filename, int m, int n, int k, bool log = 0 , int
             if (state) s += a[i++][j];
             else       s += a[i][j++];
         }
-        if (log) cout << s << " -> ";
+        if (log) cout << s;
         
         // Random wrong answer
+        bool flag = 0;
         while (rand() % wrongRatio)
         {
+            flag = 1;
             s[rand() % s.length()] = rand() % 26 + 'A';
         }
 
-        if (log) cout << s << endl;
+        if (log)
+        {
+            if (flag) cout << "\t-> " << s;
+            cout << endl;
+        } 
         fs << s << endl;
     }
 
@@ -73,5 +85,5 @@ int main()
 
     int m, n, k;
     cin >> m >> n >> k; 
-    generateTest("1.txt", m, n, k);
+    generateTest("1.txt", m, n, k, 1, 5);
 }
