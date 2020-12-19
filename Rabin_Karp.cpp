@@ -7,8 +7,8 @@ using namespace std;
 
 vector<int> RabinKarpMatcher(char* T,char* P) {
 	// choose base = p and mod = m
-	const int p = 31;
-	const int MOD = 1e9 + 9;
+	const long long p = 31;
+	const long long MOD = 1e9 + 9;
 
 	// length of patter and text
 	int n = strlen(T), m = strlen(P);
@@ -21,17 +21,17 @@ vector<int> RabinKarpMatcher(char* T,char* P) {
 
 	// pre-compute hash of every prefix of text string
 	vector<long long> h(n + 1, 0);
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; ++i)
 		h[i + 1] = (h[i] + (long long)(T[i] - 'a' + 1) * p_pow[i] % MOD) % MOD;
 
 	// pre-compute hash of pattern string
 	long long h_s = 0;
-	for (int i = 0; i < m; i++)
+	for (int i = 0; i < m; ++i)
 		h_s = (h_s + (long long)(P[i] - 'a' + 1) * p_pow[i] % MOD) % MOD;
 
 	// start matching
 	vector<int> occurences;
-	for (int i = 0; i + m - 1 < n; i++) {
+	for (int i = 0; i + m - 1 < n; ++i) {
 		// current hash of T[i..i + m - 1]
 		long long cur_h = (h[i + m] + MOD - h[i]) % MOD;
 		// if match then push back i to result

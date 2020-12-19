@@ -17,7 +17,7 @@ int main() {
 	for (int i = 0; i <= 2; ++i) {
 		for (int j = 0; j < 5; ++j) {
 			fout << i << "," << size[j] << ",";
-			for (int k = 3; k <= 3; ++k) {
+			for (int k = 2; k <= 2; ++k) {
 				str = new char[size[j] + 2];
 				int sSize;
 				if (i == 1 || i == 2) {

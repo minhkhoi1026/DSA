@@ -74,7 +74,10 @@ vector<int> rabinKarpMatcher(char* P, char* T) {
 		h_s = (h_s + (long long)(P[i] - 'a' + 1) * p_pow[i] % MOD) % MOD;
 
 	// start matching
+	
 	vector<int> occurences;
+	if (m == 0)
+		return occurences;
 	for (int i = 0; i + m - 1 < n; i++) {
 		// current hash of T[i..i + m - 1]
 		long long cur_h = (h[i + m] + MOD - h[i]) % MOD;
