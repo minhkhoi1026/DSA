@@ -12,7 +12,7 @@ vector<int> stringMatching(string T, string P)
     for (int s = 0; s <= n - m; ++s)
     {
         check = 1;
-        for (int j = 1; j < m; ++j)
+        for (int j = 0; j < m; ++j)
             if (P[j] != T[s + j])
             {
                 check = 0;
