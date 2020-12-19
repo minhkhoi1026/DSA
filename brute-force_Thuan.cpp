@@ -2,36 +2,32 @@
 
 using namespace std;
 
-bool cmp(const char* a, const char* b, int n)
-{
-    for (int i = 0; i < n; ++i)
-    {
-        if (a[i] != b[i])
-            return 0;
-    }
-    return 1;
-}
-
 vector<int> stringMatching(string T, string P)
 {
-    vector<int> kq;
+    vector<int> result;
     int n = T.length();
     int m = P.length();
+    bool check;
 
-    for (int i = 0; i <= n - m; ++i)
+    for (int s = 0; s <= n - m; ++s)
     {
-        if (cmp(T.c_str() + i, P.c_str(), m))
-            kq.push_back(i);
-    }
-    return kq;
-    
+        check = 1;
+        for (int j = 1; j < m; ++j)
+            if (P[j] != T[s + j])
+            {
+                check = 0;
+                break;
+            }
+        if (check) result.push_back(s);
+    }   
+    return result;
 }
 
 int main()
 {
-    string a = "ab";
-    string b = "abcdeab";
-    vector<int> kq = stringMatching(b, a);
+    string a = "abcdeab";
+    string b = "ab";
+    vector<int> kq = stringMatching(a, b);
     for (int i  = 0; i < kq.size(); ++i) cout << kq[i] << " ";
     cout << endl;
 }
