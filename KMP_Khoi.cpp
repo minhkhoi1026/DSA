@@ -6,7 +6,7 @@
 using namespace std;
 
 int* computePrefixFunction(char* P) {
-	int m = P.length();
+	int m = strlen(P);
 	int* pi = new int[m + 1];
 	pi[1] = pi[0] = 0;
 	int k = 0;
