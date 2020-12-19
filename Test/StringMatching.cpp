@@ -51,8 +51,8 @@ vector<int> bruteForceMatcher(char* P, char* T)
 
 vector<int> rabinKarpMatcher(char* P, char* T) {
 	// choose base = p and mod = m
-	const int p = 31;
-	const int MOD = 1e9 + 9;
+	const long long p = 31;
+	const long long MOD = 1e9 + 9;
 
 	// length of patter and text
 	int n = strlen(T), m = strlen(P);
@@ -87,12 +87,13 @@ vector<int> rabinKarpMatcher(char* P, char* T) {
 
 int* computePrefixFunction(char* P) {
 	int m = strlen(P);
+	// init new array pi
 	int* pi = new int[m + 1];
 	pi[1] = pi[0] = 0;
 	int k = 0;
 	for (int q = 2; q <= m; ++q) {
 		while (k > 0 && P[k] != P[q - 1])
-			q = pi[q];
+			k = pi[k];
 		if (P[k] == P[q - 1])
 			++k;
 		pi[q] = k;

@@ -5,8 +5,6 @@
 #include <string>
 using namespace std;
 
-
-
 void GenerateRandomData(char* substr, char* str, int m,int n) {
 	for (int i = 0; i < m; ++i) {
 		substr[i] = rand() % 26 + 'a';

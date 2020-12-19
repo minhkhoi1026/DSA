@@ -12,7 +12,7 @@ int* computePrefixFunction(char* P) {
 	int k = 0;
 	for (int q = 2; q <= m; ++q) {
 		while (k > 0 && P[k] != P[q - 1])
-			q = pi[q];
+			k = pi[k];
 		if (P[k] == P[q - 1])
 			++k;
 		pi[q] = k;

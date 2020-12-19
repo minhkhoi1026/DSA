@@ -2,6 +2,8 @@
 #include "StringMatching.h"
 #include <fstream>
 
+using namespace std;
+
 int main() {
 	ofstream fout("DataStringMatching.csv", ios::out);
 	if (!fout) {
@@ -11,15 +13,15 @@ int main() {
 	int size[] = { 3000, 10000, 30000, 100000, 300000 };
 	char* substr;
 	char* str;
-	fout << "Data Type,Size,Brute Force, Kabin Karp, KMP \n";
+	fout << "Data Type,Size,Brute Force, Rabin Karp, KMP\n";
 	for (int i = 0; i <= 2; ++i) {
 		for (int j = 0; j < 5; ++j) {
 			fout << i << "," << size[j] << ",";
-			for (int k = 1; k <= 1; ++k) {
+			for (int k = 3; k <= 3; ++k) {
 				str = new char[size[j] + 2];
 				int sSize;
 				if (i == 1 || i == 2) {
-					sSize = rand() % size[j];
+					continue;
 				}
 				else {
 					sSize = size[j] / rand();
