@@ -1,0 +1,10 @@
+# file with no extension
+*
+!*.*
+!*/
+
+#VSCode
+.vscode/
+
+#Text file
+*.txt
