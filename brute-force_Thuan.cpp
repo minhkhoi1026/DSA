@@ -1,37 +1,38 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <string.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-bool cmp(const char* a, const char* b, int n)
+bool isPrefix(const char* a, const char* b)
 {
+    int n = strlen(a);
     for (int i = 0; i < n; ++i)
-    {
         if (a[i] != b[i])
             return 0;
-    }
     return 1;
 }
 
-vector<int> stringMatching(string T, string P)
+vector<int> bruteForceMatcher(char* T, char* P)
 {
-    vector<int> kq;
-    int n = T.length();
-    int m = P.length();
+    vector<int> res;
+    int n = strlen(T);
+    int m = strlen(P);
 
     for (int i = 0; i <= n - m; ++i)
-    {
-        if (cmp(T.c_str() + i, P.c_str(), m))
-            kq.push_back(i);
-    }
-    return kq;
+        if (isPrefix(P, T + i))
+            res.push_back(i);
+    return res;
     
 }
 
-int main()
-{
-    string a = "ab";
-    string b = "abcdeab";
-    vector<int> kq = stringMatching(b, a);
-    for (int i  = 0; i < kq.size(); ++i) cout << kq[i] << " ";
-    cout << endl;
-}
+//int main()
+//{
+//    char P[] = "ab";
+//    char T[] = "abacdeaaaaba";
+//    vector<int> kq = bruteForceMatcher(T, P);
+//    for (int i  = 0; i < kq.size(); ++i) 
+//        cout << kq[i] << " ";
+//    cout << endl;
+//}
