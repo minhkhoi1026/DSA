@@ -1,33 +1,38 @@
-#include <bits/stdc++.h>
+#pragma once
+#include <string.h>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-vector<int> stringMatching(string T, string P)
+bool isPrefix(const char* a, const char* b)
 {
-    vector<int> result;
-    int n = T.length();
-    int m = P.length();
-    bool check;
-
-    for (int s = 0; s <= n - m; ++s)
-    {
-        check = 1;
-        for (int j = 0; j < m; ++j)
-            if (P[j] != T[s + j])
-            {
-                check = 0;
-                break;
-            }
-        if (check) result.push_back(s);
-    }   
-    return result;
+    int n = strlen(a);
+    for (int i = 0; i < n; ++i)
+        if (a[i] != b[i])
+            return 0;
+    return 1;
 }
 
-int main()
+vector<int> bruteForceMatcher(char* T, char* P)
 {
-    string a = "abcdeab";
-    string b = "ab";
-    vector<int> kq = stringMatching(a, b);
-    for (int i  = 0; i < kq.size(); ++i) cout << kq[i] << " ";
-    cout << endl;
+    vector<int> res;
+    int n = strlen(T);
+    int m = strlen(P);
+
+    for (int i = 0; i <= n - m; ++i)
+        if (isPrefix(P, T + i))
+            res.push_back(i);
+    return res;
+    
 }
+
+//int main()
+//{
+//    char P[] = "ab";
+//    char T[] = "abacdeaaaaba";
+//    vector<int> kq = bruteForceMatcher(T, P);
+//    for (int i  = 0; i < kq.size(); ++i) 
+//        cout << kq[i] << " ";
+//    cout << endl;
+//}
