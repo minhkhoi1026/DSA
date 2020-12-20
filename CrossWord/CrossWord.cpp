@@ -27,13 +27,10 @@ int* computePrefixFunction(const char* P) {
 	return pi;
 }
 
-vector<int> KMPMatcher(char* T, const char* P) {
+vector<int> KMPMatcher(char* T, const char* P, int* pi) {
 	vector<int> res;
 	int n = strlen(T);
 	int m = strlen(P);
-
-	// compute prefix function pi[q]
-	int* pi = computePrefixFunction(P);
 
 	//maching using idea of finite automaton
 	int q = 0;
@@ -49,7 +46,6 @@ vector<int> KMPMatcher(char* T, const char* P) {
 			q = pi[q];
 		}
 	}
-	delete pi;
 	return res;
 }
 
@@ -84,11 +80,17 @@ void deleteTable(char** a, int W, int H) {
 }
 
 void findWord(const char* word, char** a, int W, int H, vector<DataRes>& res, int type) {
+	// pre compute prefix function
+	// advoid wasting time to compute same word multiple time.
+	int* pi = computePrefixFunction(word);
+	// for each row in table, muse KMP to find pattern string in that row text string
 	for (int i = 0; i < W; i++) {
-		vector<int> tmp = KMPMatcher(a[i], word);
+		vector<int> tmp = KMPMatcher(a[i], word, pi);
+		// push back result of current row to all row result
 		for (int j = 0; j < tmp.size(); ++j)
 			res.push_back({ i + 1, tmp[j] + 1, type });
 	}
+	delete pi;
 }
 
 void writeResult(string word, vector<DataRes> res) {
@@ -117,7 +119,9 @@ int main()
 		if (word == "#")
 			break;
 		res.clear();
+		// find word from left to right
 		findWord(word.c_str(), a, W, H, res, 0);
+		// find word from top to bottom
 		findWord(word.c_str(), a_rotate, H, W, res, 1);
 		writeResult(word, res);
 	}
