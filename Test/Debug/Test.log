@@ -1,5 +1,0 @@
-﻿  StringMatching.cpp
-E:\DSA\Test\StringMatching.cpp(11,35): warning C4244: 'return': conversion from 'double' to '__int64', possible loss of data
-E:\DSA\Test\StringMatching.cpp(55,28): warning C4244: 'initializing': conversion from 'double' to '__int64', possible loss of data
-E:\DSA\Test\StringMatching.cpp(63,20): warning C4018: '<': signed/unsigned mismatch
-  Test.vcxproj -> E:\DSA\Test\Debug\Test.exe

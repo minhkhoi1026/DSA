@@ -1,0 +1,2 @@
+E:\DSA\CrossWord\Debug\CrossWord.exe
+E:\DSA\CrossWord\Debug\CrossWord.pdb

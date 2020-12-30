@@ -1,4 +1,0 @@
-﻿  CrossWord.cpp
-E:\DSA\CrossWord\CrossWord.cpp(86,21): warning C4018: '<': signed/unsigned mismatch
-E:\DSA\CrossWord\CrossWord.cpp(95,20): warning C4018: '<': signed/unsigned mismatch
-  CrossWord.vcxproj -> E:\DSA\CrossWord\Debug\CrossWord.exe
