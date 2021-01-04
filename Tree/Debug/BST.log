@@ -1,4 +1,0 @@
-﻿  main.cpp
-D:\Google Drive\HCMUS\Year 2 Semester 1\CTDLGT\Lab4\BST\main.cpp(41,20): warning C4018: '<': signed/unsigned mismatch
-D:\Google Drive\HCMUS\Year 2 Semester 1\CTDLGT\Lab4\BST\main.cpp(45,20): warning C4018: '<': signed/unsigned mismatch
-  BST.vcxproj -> D:\Google Drive\HCMUS\Year 2 Semester 1\CTDLGT\Lab4\BST\Debug\BST.exe
